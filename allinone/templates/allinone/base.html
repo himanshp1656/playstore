@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Django Website{% endblock %}</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+    <style>
+        /* Basic Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            /* background-color: #111; */
+            padding: 10px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            color: rgb(84, 84, 232);
+            font-size: xx-large;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar-links a {
+            color: rgb(84, 84, 232);
+            text-decoration: none;
+            font-size: larger;
+        }
+
+        .navbar-links a:hover {
+            color: white;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .search-bar input[type="search"] {
+            padding: 5px;
+            font-size: 16px;
+            margin-right: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .search-bar button {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            background-color: rgb(84, 84, 232);
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: rgb(84, 84, 232);
+            margin: 4px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-links, .navbar-brand{
+
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                background-color: #111;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                padding: 10px;
+            }
+
+            .navbar-links.show {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Dropdown Styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    color: rgb(84, 84, 232);
+    text-decoration: none;
+    font-size: larger;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #111;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    flex-direction: column;
+}
+
+.dropdown-content a {
+    /* color: white; */
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(84, 84, 232, 0.7);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/* Footer Styling */
+footer {
+    /* background-color: #111; */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-link {
+    color: rgb(84, 84, 232);
+    text-decoration: none;
+    font-size: larger;
+    padding: 5px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+</style>
+{% block style %}
+<!-- Content goes here -->
+{% endblock %}
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <a class="navbar-brand" href="#">ULTRAMODS</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div> 
+                <div></div>
+            </div>
+            <div class="navbar-links" id="navbarLinks">
+                <a href="#">HOME</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle">APP</a>
+                    <div class="dropdown-content">
+                        <a href="#">OTT</a>
+                        <a href="#">NEW APPS</a>
+                        <a href="#">TRANDING</a>
+                        <a href="#">GAMES:-ADULT</a>
+                        <a href="#">MORE</a>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="search-bar">
+                <input type="search" placeholder="Search" aria-label="Search">
+                <button type="submit">Search</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mt-4">
+        {% block content %}
+        <!-- Content goes here -->
+        {% endblock %}
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About Us</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms and Conditions</a>
+                <a href="#" class="footer-link">Contact Us</a>
+                <a href="#" class="footer-link">FAQs</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript for Toggle Menu -->
+    <script>
+        function toggleMenu() {
+            const navbarLinks = document.getElementById('navbarLinks');
+            navbarLinks.classList.toggle('show');
+        }
+    </script>
+            {% block script %}
+            <!-- Content goes here -->
+            {% endblock %}
+</body>
+</html>

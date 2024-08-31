@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <title>ultramods</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="{% static 'css/game.css' %}" rel="stylesheet">
+    <style>
+      @media (max-width: 768px) {
+    .game-item {
+        flex: 1 1 calc(50% - 30px); /* 2 items per row on smaller screens */
+        max-width: calc(50% - 30px); /* Ensure items fit in a row */
+        margin-left: 500px;
+
+    }
+    h5{
+      color: red;
+    }
+
+}
+
+    </style>
+</head>
+<body>
+    <!--Navbar section-->
+    <nav class="navbar navbar-expand-lg sticky-top position-steeky">
+        <div class="container-fluid">
+            <img src="{% static 'img/google_playstore_logo-removebg-preview.png' %}" class="logo" height="50" width="200">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="./pages/games.html">Games</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pages/apps.html">Apps</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pages/movies.html">Movies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pages/books.html">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pages/kids.html">Children</a></li>
+                    <form class="d-flex" role="search">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <img src="{% static 'img/search.png' %}" height="36" width="36">
+                    </form>
+                    <div>
+                        <a href="./pages/signin.html"><img src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png" class="account" height="40" width="40"></a>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>          
+
+    <!--Image auto-slider section-->
+    <!-- Slider -->
+    <div class="slider">
+        <!-- Radio Controllers -->
+        <input type="radio" name="sld" id="sld1">
+        <input type="radio" name="sld" id="sld2">
+        <input type="radio" name="sld" id="sld3">
+        <input type="radio" name="sld" id="sld4">
+        <input type="radio" name="sld" id="sld5">
+
+        <!-- Slides -->
+        <div class="slides">
+            <!-- Slide 01 -->
+            <div class="slide curr"><img src="{% static 'img/Games-Images/1_OSVptnNeegbjhnSWo2V_qw[2].jpg' %}" alt=""></div>
+            <!-- Slide 02 -->
+            <div class="slide"><img src="{% static 'img/Games-Images/fortnite-jungle-3840x2160-11907.jpeg' %}" alt=""></div>
+            <!-- Slide 03 -->
+            <div class="slide"><img src="{% static 'img/Games-Images/fortnite-superlevel-styles[2].webp' %}" alt=""></div>
+            <!-- Slide 04 -->
+            <div class="slide"><img src="{% static 'img/Games-Images/halo-infinite-master-chief-5120x2160-1885[1].jpg' %}" alt=""></div>
+            <!-- Slide 05 -->
+            <div class="slide"><img src="{% static 'img/Games-Images/reyna-gekko-valorant-3840x2160-11679.jpeg' %}" alt=""></div>
+        </div>
+        <!-- Arrow Navigation -->
+        <a href="#" class="arrow left"><i class="fa-solid fa-angles-left"></i></a>
+        <a href="#" class="arrow right"><i class="fa-solid fa-angles-right"></i></a>
+        <!-- Radio Navigation -->
+        <div class="rad-nav">
+            <label for="sld1" class="rad-btn active"></label>
+            <label for="sld2" class="rad-btn"></label>
+            <label for="sld3" class="rad-btn"></label>
+            <label for="sld4" class="rad-btn"></label>
+            <label for="sld5" class="rad-btn"></label>
+        </div>
+    </div>
+    
+    <h3>Featured games</h3>
+    <p>Premium Games on Ultramods</p>
+    <div class="container">
+        <div class="row" id="featured-game-list">
+            {% for game in games %}
+            <div class="col-lg-4 mt-5 game-item" style="display: {% if forloop.counter <= 3 %}block{% else %}none{% endif %};">
+                <video controls muted height="200" width="350">
+                    <source src="{% static 'img/Games-Images/FFM_OB41_Store_Listing_Update__Free_Fire_Official(720p).mp4' %}" type="video/mp4">
+                </video>
+                <div class="d-flex">
+                    <div class="img">
+                        <img src="https://play-lh.googleusercontent.com/DDwl4oKqYD9tLgas79qNQ-2oQ_O0gT3O0ZyBoFvrgm6UzI5qEjHFbMsnhTQ-MjqOqMU=s64-rw" class="card-img-top channel logo mt-1 mx-2" alt="Video Thumbnail">
+                    </div>
+                    <div class="description">
+                        <h5>{{ game.name }}</h5>
+                        <span class="subtext">{{ game.rating }} *</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <button id="toggle-button-featured" class="btn btn-dark" style="background-color: rgb(56, 53, 53);">Show More</button>
+        </div>
+    </div>
+    
+    <h3>Newly added games</h3>
+    <p>Premium Games on Ultramods</p>
+    <div class="container">
+        <div class="row" id="newly-game-list">
+            {% for app in apps %}
+            <div class="col-lg-4 mt-5 game-item" {% if forloop.counter > 3 %}style="display: none;"{% endif %}>
+                <video controls muted height="200" width="350">
+                    <source src="{% static 'img/Games-Images/FFM_OB41_Store_Listing_Update__Free_Fire_Official(720p).mp4' %}" type="video/mp4">
+                </video>
+                <div class="d-flex">
+                    <div class="img">
+                        <img src="https://play-lh.googleusercontent.com/DDwl4oKqYD9tLgas79qNQ-2oQ_O0gT3O0ZyBoFvrgm6UzI5qEjHFbMsnhTQ-MjqOqMU=s64-rw" class="card-img-top channel logo mt-1 mx-2" alt="Video Thumbnail">
+                    </div>
+                    <div class="description">
+                        <h5>{{ app.name }}</h5>
+                        <span class="subtext">{{ app.rating }} *</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <button id="toggle-button-newly" class="btn btn-dark" style="background-color: rgb(56, 53, 53);">Show More</button>
+        </div>
+    </div>
+
+    <footer class="mainfooter" role="contentinfo">
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
+                        <div class="footer-pad">
+                            <h4>ULTRAMODS</h4>
+                            <ul class="list-unstyled" >
+                                <li><a href="#">Play Pass</a></li>
+                                <li><a href="#">Play Points</a></li>
+                                <li><a href="#">Gift Card</a></li>
+                                <li><a href="#">Redeem</a></li>
+                                <li><a href="#">Refund Policy</a></li>
+                                <li><a href="#">FAQs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
+                        <div class="footer-pad">
+                            <h4>Children and Family</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Parent guide</a></li>
+                                <li><a href="#">Family sharing</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="./img/back playstore.png" class="blackplay" width="260" height="170">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 copy">
+                        <p class="text-center">
+                            <a href="#">Terms of service</a>
+                            <a href="#">Policy</a>
+                            <a href="#">About Ultramods</a>
+                            <a href="#">Developers</a>
+                            <a href="#">Google Store</a>
+                            <a href="#">All prices include GST.</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
+
+    <script>
+
+var slides = document.querySelectorAll('.slide');
+var rbtn = document.querySelectorAll('.rad-btn');
+var leftArrow = document.querySelector('.left');
+var rightArrow = document.querySelector('.right');
+
+var slideInt; //to set ongoing time of slides
+var intTime = 5000; // interval time 5000ms
+
+//---Iterate all radio navigation button----
+rbtn.forEach(function(item, index){
+    //click event for buttons
+    item.addEventListener('click',function(){
+        manButtonNav(index);
+    });
+});
+
+console.log(slides[slides.length - 1]);
+
+//-----Click Events for Arrows----
+// Right Arrow 
+rightArrow.addEventListener('click',function(e){
+    e.preventDefault();
+    nextSlide();
+    clrInterval();
+});
+
+//Left Arrow
+leftArrow.addEventListener('click',function(e) {
+    e.preventDefault();
+    prevSlide();
+    clrInterval();
+});
+
+//-----Function for radio navigation-----
+function manButtonNav(index) {
+    for(var i = 0; i < slides.length; i++){
+        //set slide and radio navigation button
+        if(i !== index){
+            slides[i].classList.remove('curr');
+            rbtn[i].classList.remove('active');
+        }
+        else{
+            slides[index].classList.add('curr');
+            rbtn[index].classList.add('active');
+        }
+    }
+    clrInterval();
+}
+
+//-----Function for the next slide-----
+function nextSlide(){
+    var curr = document.querySelector('.curr');
+    var active = document.querySelector('.active');
+
+    // Unset Current Slide and Radio Button
+    curr.classList.remove('curr');
+    active.classList.remove('active');
+
+    // Set Next Slide and Radio Button
+    if(curr.nextElementSibling){
+        curr.nextElementSibling.classList.add('curr');
+        active.nextElementSibling.classList.add('active');
+    }
+    else{
+        slides[0].classList.add('curr');
+        rbtn[0].classList.add('active');
+    }
+}
+
+//-----Function for the previous slide-----
+function prevSlide(){
+    var curr = document.querySelector('.curr');
+    var active = document.querySelector('.active');
+
+    // Unset Current Slide and Radio Button
+    curr.classList.remove('curr');
+    active.classList.remove('active');
+
+    // Set Previous Slide and Radio Button
+    if(curr.previousSibling){
+        curr.previousElementSibling.classList.add('curr');
+        active.previousElementSibling.classList.add('active');
+    }
+    else{
+        //there have a problem
+        //???????????????????????????????????????????????????????????
+        slides[0].classList.add('curr');
+        rbtn[0].classList.add('active');
+    }
+        
+}
+//----Function for cler Interval-----
+function clrInterval() {
+    clearInterval(slideInt);
+    slideInt = setInterval(nextSlide, intTime);
+}
+
+//----Automatic Slide Navigation----
+slideInt = setInterval(nextSlide, intTime);
+
+    </script>
+<script>
+  function setupShowMoreButton(listId, buttonId) {
+      const list = document.getElementById(listId);
+      const button = document.getElementById(buttonId);
+      const gameItems = list.querySelectorAll('.game-item');
+      let visibleItems = 3; // Initial number of items to show
+      const increment = 20; // Number of items to load more
+
+      function updateButton() {
+          if (visibleItems >= gameItems.length) {
+              button.textContent = 'Show Less';
+              button.removeEventListener('click', showMoreItems);
+              button.addEventListener('click', showLessItems);
+          } else {
+              button.textContent = 'Show More';
+              button.removeEventListener('click', showLessItems);
+              button.addEventListener('click', showMoreItems);
+          }
+      }
+
+      function showMoreItems() {
+          for (let i = visibleItems; i < visibleItems + increment && i < gameItems.length; i++) {
+              gameItems[i].style.display = 'block';
+          }
+          visibleItems += increment;
+          updateButton();
+      }
+
+      function showLessItems() {
+          for (let i = 3; i < gameItems.length; i++) {
+              gameItems[i].style.display = 'none';
+          }
+          visibleItems = 3;
+          updateButton();
+      }
+
+      button.addEventListener('click', showMoreItems);
+      updateButton();
+  }
+
+  setupShowMoreButton('featured-game-list', 'toggle-button-featured');
+  setupShowMoreButton('newly-game-list', 'toggle-button-newly');
+  setupShowMoreButton('adult-game-list', 'toggle-button-adult');
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
