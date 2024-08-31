@@ -88,7 +88,7 @@
             <div class="col-lg-3 mt-5 game-item">
                 <a href="{% url 'app-detail' id=app.id %}" style="text-decoration: none; color: inherit;">
                 <div class="img">
-                    <img src="{% static 'img/Games-Images/7474.jpg' %}" height="200" width="350" class="img-fluid" alt="{{ app.name }}">
+                    <img src="{{ app.image.url }}" height="200" width="350" class="img-fluid" alt="{{ app.name }}">
                 </div>
                 <div class="d-flex">
                     <div class="img">
