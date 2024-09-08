@@ -7,19 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="{% static 'css/game.css' %}" rel="stylesheet">
     <style>
-      @media (max-width: 768px) {
-    .game-item {
-        flex: 1 1 calc(50% - 30px); /* 2 items per row on smaller screens */
-        max-width: calc(50% - 30px); /* Ensure items fit in a row */
-        margin-left: 500px;
-
-    }
-    h5{
-      color: red;
-    }
-
-}
-
 
 
     </style>
@@ -47,9 +34,9 @@
                         </li>
                         <img src="{% static "img/Games-Images/sun.png" %}" id="icon">
                     </ul>
-                    <form class="d-flex">
+                    <form class="d-flex"  action="search/" method="get">
                         <!-- <input class="form-control mx-5" placeholder="Search" size="60px">-->
-                        <input style="color: black; background-color: white;" class="form-control me-5" type="search" placeholder="Search" aria-label="Search" size="60px">
+                        <input name="query" style="color: black; background-color: white;" class="form-control me-5" type="search" placeholder="Search" aria-label="Search" size="60px">
                     </form>
                 </div>
             </div>
@@ -87,11 +74,11 @@
       <div class="container featuregame">
           <div class="row" id="featured-game-list">
               {% for game in featured %}
-              <div class="col-lg-3 col-md-6 mt-5 game-item"  {% if forloop.counter > 4 %}style="display: none;"{% endif %}>
-                  <a href="{% url 'app-detail' id=game.id %}" style="text-decoration: none; color: inherit;">
-                  <div class="img">
+              <div class="col-lg-3 col-md-12 mt-5 game-item"  {% if forloop.counter > 4 %}style="display: none;"{% endif %}>
+                  <a  href="{% url 'app-detail' id=game.id %}" style="text-decoration: none; color: inherit;">
+                  <div  class="img">
                       <!-- Replace video with image -->
-                      <img src="{{ game.image.url }}" height="200" width="350" class="img-fluid" alt="{{ app.name }}">
+                      <img class="impimage"  src="{{ game.image.url }}" height="200" width="350" class="img-fluid impimage" alt="{{ app.name }}">
                   </div>
                   <div class="d-flex">
                       <div class="img">

@@ -17,6 +17,7 @@
     h5{
       color: red;
     }
+    
 
 }
 
@@ -90,11 +91,11 @@
         <div class="row" id="featured-game-list">
             {% for app in featured_apps %}
            
-            <div class="col-lg-3 col-md-6 mt-5 game-item" {% if forloop.counter > 4 %}style="display: none;"{% endif %}">
+            <div class="col-lg-3 col-md-12 mt-5 game-item" {% if forloop.counter > 4 %}style="display: none;"{% endif %}">
                 <a href="{% url 'app-detail' id=app.id %}" style="text-decoration: none; color: inherit;">
                 <div class="img">
                     <!-- Replace video with image -->
-                    <img src="{{ app.image.url }}" height="200" width="350" class="img-fluid" alt="{{ app.name }}">
+                    <img id="hello"  src="{{ app.image.url }}" height="200" width="350" class="img-fluid" alt="{{ app.name }}">
                 </div>
                 <div class="d-flex">
                     <div class="img">

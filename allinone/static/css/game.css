@@ -393,14 +393,18 @@ footer {
   
   
 
-@media (min-width: 576px) {
-    .game-item {
-       display: flex;
-    justify-content: center;
-        
+
+@media (max-width: 1100px) {
+    .impimage{
+      width: 50rem; /* Make sure images use full width of their container */
+    height: auto;
+    margin-left: 0px;
+    position: static;
+    left: 10px;
+    right: 10px;
+     /* Maintain aspect ratio */
+
     }
-    #flexing{
-        display: flex;
-        justify-content: center;
-    }
-}
+  }
+
+
